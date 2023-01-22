@@ -440,8 +440,8 @@ elif [ "$1" = "-install" ] || [ "$1" = "--install" ]; then
     /bin/sed -i "s#REPLACEFOSHKPLUGINDATADIR#$MYDIR#" $SVC_NAME.service.tmp
     # replace SyslogIdentifier in service.tmp
     /bin/sed -i "s#SyslogIdentifier=foshkplugin#SyslogIdentifier=$SVC_NAME#" $SVC_NAME.service.tmp
-    cp -f $SVC_NAME.service.tmp /etc/systemd/system/$SVC_NAME.service
     chown -v "${ISUSR}:${ISUSR}" $SVC_NAME.service.tmp
+    sudo cp -f $SVC_NAME.service.tmp /etc/systemd/system/$SVC_NAME.service
     sudo systemctl import-environment
     sudo systemctl daemon-reload && sudo systemctl enable $SVC_NAME && sudo systemctl start $SVC_NAME --no-block
   fi
