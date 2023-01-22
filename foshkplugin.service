@@ -1,0 +1,20 @@
+# put into /etc/systemd/system/
+[Unit]
+Description=foshkplugin
+After=multi-user.target
+
+[Service]
+Type=simple
+#User=loxberry
+#Group=loxberry
+EnvironmentFile=/etc/environment
+WorkingDirectory=REPLACEFOSHKPLUGINDATADIR/
+ExecStart=REPLACEFOSHKPLUGINDATADIR/foshkplugin.py
+SyslogIdentifier=foshkplugin
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
